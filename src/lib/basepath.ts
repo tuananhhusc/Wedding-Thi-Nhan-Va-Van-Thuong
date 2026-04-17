@@ -4,10 +4,7 @@
  * automatically adds basePath to <Image> components but NOT
  * to plain <img> tags or hardcoded src strings.
  */
-export const BASE_PATH =
-  process.env.NODE_ENV === "production"
-    ? "/Wedding-Van-Thuong-Va-Thi-Nhan"
-    : "";
+export const BASE_PATH = "";
 
 /**
  * Prefix a public asset path with the basePath.

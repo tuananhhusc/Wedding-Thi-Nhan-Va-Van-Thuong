@@ -2,20 +2,19 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Footer from "@/components/Footer";
 import InvitationGate from "@/components/InvitationGate";
 import SectionTransition from "@/components/SectionTransition";
 import ScrollProgress from "@/components/ScrollProgress";
+import FloatingPetals from "@/components/FloatingPetals";
+import AudioPlayer from "@/components/AudioPlayer";
 
-// Dynamically import below-the-fold components to reduce initial JS payload
-const SacramentSection = dynamic(() => import("@/components/SacramentSection"), { ssr: true });
-const EventsSection = dynamic(() => import("@/components/EventsSection"), { ssr: true });
-const GallerySection = dynamic(() => import("@/components/GallerySection"), { ssr: true });
-const RsvpSection = dynamic(() => import("@/components/RsvpSection"), { ssr: true });
-const GiftSection = dynamic(() => import("@/components/GiftSection"), { ssr: true });
+import SacramentSection from "@/components/SacramentSection";
+import EventsSection from "@/components/EventsSection";
+import GallerySection from "@/components/GallerySection";
+import RsvpSection from "@/components/RsvpSection";
 
 export default function Home() {
   const [invitationOpened, setInvitationOpened] = useState(false);
@@ -24,6 +23,8 @@ export default function Home() {
     <>
       <InvitationGate visible={!invitationOpened} onOpen={() => setInvitationOpened(true)} />
       <ScrollProgress />
+      <FloatingPetals />
+      <AudioPlayer autoPlay={invitationOpened} />
       <Navbar />
       <motion.main 
         initial={{ opacity: 0 }}
@@ -45,7 +46,7 @@ export default function Home() {
         </motion.div>
 
         {/* Remaining sections appear with a stagger */}
-        {[SacramentSection, EventsSection, GallerySection, RsvpSection, GiftSection].map(
+        {[SacramentSection, EventsSection, GallerySection, RsvpSection].map(
           (Section, i) => (
             <motion.div
               key={i}

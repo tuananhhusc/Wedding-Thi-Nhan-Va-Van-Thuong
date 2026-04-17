@@ -9,6 +9,8 @@ import {
   OliveBranch,
 } from "@/components/CatholicOrnaments";
 import { withBase } from "@/lib/basepath";
+import { WEDDING_CALENDAR_EVENTS } from "@/lib/wedding-calendar-events";
+import { getGoogleCalendarUrl, getIcsUrl } from "@/lib/calendar-links";
 
 /* ── Inline SVG Icons for buttons ── */
 
@@ -168,16 +170,24 @@ export default function EventsSection() {
               </div>
 
               {/* Action Buttons: Footer of the card */}
-              <div className="mt-7 md:mt-10 flex flex-col gap-2.5 md:gap-3 w-full px-0 md:px-2">
+              <div className="mt-7 md:mt-10 grid grid-cols-2 gap-2 md:gap-3 w-full px-0 md:px-1">
                 <motion.a
                   whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  href={event.calendarUrl}
-                  title="Thêm vào Lịch (iPhone, Android) — có nhắc nhở"
-                  className="btn-outline btn-sm w-full text-[10px] py-3 flex items-center justify-center gap-2"
+                  href={getGoogleCalendarUrl(WEDDING_CALENDAR_EVENTS[event.id])}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline btn-sm py-3 px-1 flex items-center justify-center gap-1.5 text-[9px] font-bold"
                 >
-                  <CalendarIcon />
-                  LƯU KỶ NIỆM
+                  GOOGLE
+                </motion.a>
+                <motion.a
+                  whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  href={getIcsUrl(event.id)}
+                  className="btn-outline btn-sm py-3 px-1 flex items-center justify-center gap-1.5 text-[9px] font-bold"
+                >
+                  IPHONE
                 </motion.a>
                 <motion.a
                   whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
@@ -185,7 +195,7 @@ export default function EventsSection() {
                   href={event.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary btn-sm w-full text-[10px] py-3 flex items-center justify-center gap-2 shadow-sm"
+                  className="btn-primary btn-sm col-span-2 text-[10px] py-3 flex items-center justify-center gap-2 shadow-sm mt-1"
                 >
                   <MapPinIcon />
                   XEM BẢN ĐỒ

@@ -196,8 +196,18 @@ export default function InvitationGate({ visible, onOpen }: InvitationGateProps)
           {/* CTA text */}
           <motion.p
             initial={{ opacity: 0 }}
-            animate={opening ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
-            transition={opening ? { duration: 0.3 } : { delay: 0.45, duration: 0.4 }}
+            animate={
+              opening 
+                ? { opacity: 0, y: -10 } 
+                : { 
+                    opacity: [0.4, 1, 0.4], 
+                    y: [0, -3, 0],
+                    transition: { 
+                      opacity: { repeat: Infinity, duration: 2, ease: "easeInOut" },
+                      y: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                    } 
+                  }
+            }
             className="mt-5 md:mt-7 text-[10px] md:text-xs uppercase tracking-[0.22em] text-gold-muted text-center"
           >
             {opening ? "Đang mở thiệp..." : "Nhấn con dấu để mở thiệp"}

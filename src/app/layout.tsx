@@ -103,8 +103,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-serif antialiased selection:bg-gold-pale selection:text-navy relative">
-        <AudioPlayer />
-        <FloatingPetals />
         {children}
       </body>
     </html>

@@ -7,6 +7,8 @@ import {
   SacredUnityCross,
   OliveBranch,
 } from "@/components/CatholicOrnaments";
+import { WEDDING_CALENDAR_EVENTS } from "@/lib/wedding-calendar-events";
+import { getGoogleCalendarUrl, getIcsUrl } from "@/lib/calendar-links";
 
 function CalendarIcon() {
   return (
@@ -143,20 +145,26 @@ export default function SacramentSection() {
               </div>
 
               {/* Action buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 w-full justify-center px-2 mt-auto">
+              <div className="grid grid-cols-2 gap-2 md:gap-3 w-full justify-center px-0 mt-auto">
                 <a
-                  href={CHURCH_CALENDAR_ICS_HREF}
-                  title="Thêm vào Lịch (iPhone, Android) — có nhắc nhở"
-                  className="btn-primary btn-sm flex items-center justify-center gap-2 group/btn py-3 shadow-md hover:shadow-lg transition-all border-none bg-[#8a1827] text-white hover:bg-[#6e151e]"
+                  href={getGoogleCalendarUrl(WEDDING_CALENDAR_EVENTS.church)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary btn-sm flex items-center justify-center gap-1.5 py-3 shadow-md hover:shadow-lg transition-all border-none bg-[#8a1827] text-white hover:bg-[#6e151e] text-[9px] font-bold"
                 >
-                  <CalendarIcon />
-                  <span className="tracking-[0.2em] text-[10px]">Lưu kỷ niệm</span>
+                  GOOGLE
+                </a>
+                <a
+                  href={getIcsUrl("church")}
+                  className="btn-primary btn-sm flex items-center justify-center gap-1.5 py-3 shadow-md hover:shadow-lg transition-all border-none bg-[#8a1827] text-white hover:bg-[#6e151e] text-[9px] font-bold"
+                >
+                  IPHONE
                 </a>
                 <a
                   href={CHURCH_MAP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline border-border text-navy hover:bg-beige hover:border-gold-pale btn-sm flex items-center justify-center gap-2 py-3 shadow-sm hover:shadow-md transition-all"
+                  className="btn-outline border-border text-navy hover:bg-beige hover:border-gold-pale btn-sm flex items-center justify-center gap-2 py-3 shadow-sm hover:shadow-md transition-all col-span-2 mt-1"
                 >
                   <MapPinIcon />
                   <span className="tracking-[0.2em] text-[10px]">Chỉ đường</span>

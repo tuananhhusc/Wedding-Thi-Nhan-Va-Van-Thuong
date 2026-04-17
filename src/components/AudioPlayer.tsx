@@ -2,14 +2,24 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { withBase } from "@/lib/basepath";
 
-export default function AudioPlayer() {
+export default function AudioPlayer({ autoPlay = false }: { autoPlay?: boolean }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Beautiful gentle piano placeholder
-    const audio = new Audio("https://cdn.pixabay.com/audio/2022/10/25/audio_2e21b7abeb.mp3"); 
+    if (autoPlay && !isPlaying && audioRef.current) {
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(err => console.log("Auto-play failed:", err));
+    }
+  }, [autoPlay]);
+
+  useEffect(() => {
+    // Functional test audio track
+    const audioPath = withBase("/audio/" + encodeURIComponent("Westlife - My Love (Lyrics).mp3"));
+    const audio = new Audio(audioPath); 
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;

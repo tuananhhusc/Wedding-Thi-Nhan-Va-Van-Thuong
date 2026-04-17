@@ -331,7 +331,7 @@ select:focus {
 /* Utility: Background with subtle patterns */
 .section-bg-nenphu {
   background-color: #fffaf7; /* Đảm bảo màu kem luôn hiện trước */
-  background-image: url("/Wedding-Van-Thuong-Va-Thi-Nhan/image/nenphu.svg");
+  background-image: url("/image/nenphu.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -356,7 +356,7 @@ select:focus {
 /* Hero Section Background */
 .section-bg-hero {
   background-color: #fffaf7;
-  background-image: url("/Wedding-Van-Thuong-Va-Thi-Nhan/image/nenchinhthuc3.svg");
+  background-image: url("/image/nenchinhthuc3.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -370,14 +370,14 @@ select:focus {
 @media (max-width: 767px) {
   .section-bg-nenmobile {
     background-color: #fffaf7;
-    background-image: url("/Wedding-Van-Thuong-Va-Thi-Nhan/image/nenmobile.svg");
+    background-image: url("/image/nenmobile.svg");
     background-repeat: repeat-y;
     background-position: center top;
     background-size: 100% auto;
   }
 
   .section-bg-hero {
-    background-image: url("/Wedding-Van-Thuong-Va-Thi-Nhan/image/nenchinhthuc4.svg");
+    background-image: url("/image/nenchinhthuc4.svg");
     background-position: center top;
     background-size: cover;
   }

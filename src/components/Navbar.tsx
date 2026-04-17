@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { SacredUnityCross } from "@/components/CatholicOrnaments";
 
 export default function Navbar() {
@@ -18,7 +19,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["#hero", "#bi-tich", "#su-kien", "#album", "#rsvp", "#mung-cuoi"];
+    const sectionIds = ["#hero", "#bi-tich", "#su-kien", "#album", "#rsvp"];
     const sections = sectionIds
       .map((id) => document.querySelector(id))
       .filter((el): el is Element => Boolean(el));
@@ -47,7 +48,6 @@ export default function Navbar() {
     { label: "Sự kiện", href: "#su-kien" },
     { label: "Album", href: "#album" },
     { label: "RSVP", href: "#rsvp" },
-    { label: "Mừng Cưới", href: "#mung-cuoi" },
   ];
 
   return (
@@ -60,27 +60,31 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-0 md:px-6 pr-2 md:pr-6 flex items-center justify-between">
         {/* Logo — Cross + Names */}
-        <motion.a
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <Link
           href="/"
           className="flex items-center gap-3 no-underline group px-4 md:px-0"
         >
-          <SacredUnityCross size={18} className="text-gold group-hover:scale-110 transition-transform" />
-          <span className="mobile-brand !font-script text-navy text-xl md:text-2xl tracking-wide group-hover:text-gold transition-colors whitespace-nowrap flex items-center gap-2">
-            Văn Thường
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="text-navy group-hover:scale-125 transition-transform"
-            >
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-            </svg>
-            Thị Nhàn
-          </span>
-        </motion.a>
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            className="flex items-center gap-3"
+          >
+            <SacredUnityCross size={18} className="text-gold group-hover:scale-110 transition-transform" />
+            <span className="mobile-brand !font-script text-navy text-xl md:text-2xl tracking-wide group-hover:text-gold transition-colors whitespace-nowrap flex items-center gap-2">
+              Văn Thường
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="text-navy group-hover:scale-125 transition-transform"
+              >
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+              Thị Nhàn
+            </span>
+          </motion.div>
+        </Link>
 
         {/* Navigation Links — Desktop */}
         <ul className="hidden md:flex items-center gap-10 list-none m-0 p-0">
