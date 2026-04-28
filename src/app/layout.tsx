@@ -24,8 +24,15 @@ const scriptFont = Dancing_Script({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.weddingnhanthuong.id.vn";
+const OG_IMAGE = "/opengraph-image";
+
 export const metadata: Metadata = {
-  title: "Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn — Thiệp Mời Hôn Phối",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn — Thiệp Mời Hôn Phối",
+    template: "%s | Thiệp Mời Hôn Phối",
+  },
   description:
     "Kính mời quý khách đến hiệp thông Thánh Lễ Hôn Phối tại Giáo xứ Trại Lê (29/04/2026) và chung vui lễ cưới của Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn tại Hà Tĩnh.",
   keywords: [
@@ -39,23 +46,43 @@ export const metadata: Metadata = {
     "wedding invitation",
   ],
   authors: [{ name: "Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn — Thiệp Mời Hôn Phối",
     description:
       "Thánh Lễ Hôn Phối 29.04.2026 tại Giáo xứ Trại Lê. Lễ cưới của Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn tại Hà Tĩnh.",
     type: "website",
+    url: SITE_URL,
     locale: "vi_VN",
     siteName: "Đám Cưới Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Thiệp mời hôn phối Giuse Nguyễn Văn Thường và Terexa Phạm Thị Nhàn",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn — Thiệp Mời Hôn Phối",
     description:
       "Thánh Lễ Hôn Phối 29.04.2026 tại Giáo xứ Trại Lê. Lễ cưới của Giuse Nguyễn Văn Thường & Terexa Phạm Thị Nhàn tại Hà Tĩnh.",
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 };
 

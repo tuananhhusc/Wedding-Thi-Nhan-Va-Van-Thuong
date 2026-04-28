@@ -11,21 +11,31 @@ export default function GallerySection() {
    * Masonry-style photo grid with varied sizes.
    * Each photo has a layout class: gallery-large, gallery-tall, gallery-wide, or default (1x1).
    */
+  /*
+   * Ảnh cưới chụp ở định dạng dọc (portrait). Bố cục masonry đã được thiết kế để
+   * tận dụng tối đa chiều dọc: "tall" span 2 hàng rất hợp với ảnh dọc,
+   * "large" (2x2) để tạo điểm nhấn, những ô còn lại là hình vuông cắt mềm.
+   */
   const photos: {
     id: number;
     url: string;
     alt: string;
     layout: "large" | "tall" | "wide" | "normal";
   }[] = [
-    { id: 1, url: withBase("/image/blackpink_1.png"), alt: "Blackpink Group Portrait", layout: "large" },
-    { id: 2, url: withBase("/image/blackpink_2.png"), alt: "Jennie Kim", layout: "tall" },
-    { id: 3, url: withBase("/image/aespa_duo.png"), alt: "Karina & Winter (aespa)", layout: "normal" },
-    { id: 4, url: withBase("/image/blackpink_4.png"), alt: "Rosé Park", layout: "tall" },
-    { id: 5, url: withBase("/image/blackpink_5.png"), alt: "Blackpink Performance", layout: "wide" },
-    { id: 6, url: withBase("/image/blackpink_6.png"), alt: "Jisoo Kim", layout: "normal" },
-    { id: 7, url: withBase("/image/aespa_karina.png"), alt: "Karina (aespa)", layout: "large" },
-    { id: 8, url: withBase("/image/aespa_winter.png"), alt: "Winter (aespa)", layout: "wide" },
-    { id: 9, url: withBase("/image/suzy.png"), alt: "Vĩnh Cửu — Con số 9 May Mắn (Suzy)", layout: "normal" },
+    { id: 1, url: withBase("/image/gallery-ultra/01.jpg"), alt: "Khoảnh khắc 01", layout: "tall" },
+    { id: 2, url: withBase("/image/gallery-ultra/07.jpg"), alt: "Khoảnh khắc 02", layout: "normal" },
+    { id: 3, url: withBase("/image/gallery-ultra/11.jpg"), alt: "Khoảnh khắc 03", layout: "tall" },
+    { id: 4, url: withBase("/image/gallery-ultra/15.jpg"), alt: "Khoảnh khắc 04", layout: "large" },
+    { id: 5, url: withBase("/image/gallery-ultra/04.jpg"), alt: "Khoảnh khắc 05", layout: "normal" },
+    { id: 6, url: withBase("/image/gallery-ultra/09.jpg"), alt: "Khoảnh khắc 06", layout: "tall" },
+    { id: 7, url: withBase("/image/gallery-ultra/18.jpg"), alt: "Khoảnh khắc 07", layout: "normal" },
+    { id: 8, url: withBase("/image/gallery-ultra/20.jpg"), alt: "Khoảnh khắc 08", layout: "normal" },
+    { id: 9, url: withBase("/image/gallery-ultra/13.jpg"), alt: "Khoảnh khắc 09", layout: "tall" },
+    { id: 10, url: withBase("/image/gallery-ultra/22.jpg"), alt: "Khoảnh khắc 10", layout: "large" },
+    { id: 11, url: withBase("/image/gallery-ultra/02.jpg"), alt: "Khoảnh khắc 11", layout: "normal" },
+    { id: 12, url: withBase("/image/gallery-ultra/17.jpg"), alt: "Khoảnh khắc 12", layout: "tall" },
+    { id: 13, url: withBase("/image/gallery-ultra/19.jpg"), alt: "Khoảnh khắc 13", layout: "normal" },
+    { id: 14, url: withBase("/image/gallery-ultra/23.jpg"), alt: "Khoảnh khắc 14", layout: "normal" },
   ];
 
   const layoutClassMap = {

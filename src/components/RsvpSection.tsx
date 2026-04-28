@@ -51,6 +51,7 @@ export default function RsvpSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const triggerConfetti = () => {
     const isSmallDevice = window.matchMedia("(max-width: 768px)").matches;
@@ -65,9 +66,14 @@ export default function RsvpSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
-      const { supabase } = await import("@/lib/supabase");
+      const { supabase, isSupabaseConfigured } = await import("@/lib/supabase");
+      if (!isSupabaseConfigured) {
+        throw new Error("Thiếu cấu hình Supabase. Vui lòng cấu hình biến môi trường.");
+      }
+
       const { error } = await supabase.from("rsvp").insert([
         {
           name: formData.name,
@@ -80,12 +86,11 @@ export default function RsvpSection() {
       if (error) throw error;
       setSubmitted(true);
       triggerConfetti();
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("RSVP submission error:", err);
-      // alert("Đã có lỗi xảy ra. Xin vui lòng thử lại.");
-      // For demo purposes, we can still show success even if DB fails
-      setSubmitted(true);
-      triggerConfetti();
+      const message =
+        err instanceof Error ? err.message : "Đã có lỗi xảy ra, vui lòng thử lại sau.";
+      setSubmitError(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -245,6 +250,9 @@ export default function RsvpSection() {
 
                   {/* Submit */}
                   <div className="text-center pt-6">
+                    {submitError ? (
+                      <p className="mb-4 text-xs text-[#8a1827] tracking-wide">{submitError}</p>
+                    ) : null}
                     <motion.button
                       whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}

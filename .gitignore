@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw unoptimized source photos (huge DSLR originals). App uses /public/image/gallery-ultra/*.jpg.
+/public/image/DSC*.jpg

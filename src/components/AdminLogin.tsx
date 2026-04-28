@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { SacredUnityCross } from "@/components/CatholicOrnaments";
 
 interface AdminLoginProps {
@@ -28,6 +29,13 @@ export default function AdminLogin({ onLogin, error }: AdminLoginProps) {
           <SacredUnityCross size={40} className="text-gold mb-6 mx-auto" />
           <h1 className="font-serif text- navy text-3xl uppercase tracking-widest mb-2 font-medium">Bảng Quản Trị</h1>
           <p className="font-serif italic text-charcoal opacity-70">Vui lòng nhập mật mã để truy cập danh sách RSVP</p>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 mt-4 text-[10px] tracking-[0.18em] uppercase text-gold hover:text-[#8a1827] transition-colors font-bold"
+          >
+            <span aria-hidden="true">←</span>
+            Quay lại trang chính
+          </Link>
         </div>
 
         <div className="rsvp-card rounded-sm shadow-2xl p-8 md:p-10 bg-white">

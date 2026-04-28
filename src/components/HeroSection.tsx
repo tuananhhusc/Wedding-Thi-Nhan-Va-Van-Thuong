@@ -20,7 +20,7 @@ export default function HeroSection() {
       {/* Main container */}
       <div className="relative max-w-5xl mx-auto px-4 md:px-6 w-full flex flex-col items-center justify-center h-full pt-24 md:pt-36 pb-16 md:pb-20">
         {/* Content */}
-        <div className="relative z-10 w-full">
+        <div className="hero-content-shell relative z-10 w-full">
           <motion.div variants={staggerContainer} initial="hidden" animate="show">
             {/* Sacred Cross */}
             <motion.div variants={fadeUpVariants(enterDistance)}>

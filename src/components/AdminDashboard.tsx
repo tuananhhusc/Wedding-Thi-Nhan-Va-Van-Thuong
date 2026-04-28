@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase } from "@/lib/supabase";
+import Link from "next/link";
+import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 import { SacredUnityCross } from "@/components/CatholicOrnaments";
 
 interface RSVP {
@@ -26,7 +27,12 @@ export default function AdminDashboard() {
 
   const fetchRSVPs = async () => {
     setLoading(true);
+    setError(null);
     try {
+      if (!isSupabaseConfigured) {
+        throw new Error("Thiếu cấu hình Supabase trên môi trường deploy.");
+      }
+
       const { data, error: fetchError } = await supabase
         .from("rsvp")
         .select("*")
@@ -34,8 +40,10 @@ export default function AdminDashboard() {
 
       if (fetchError) throw fetchError;
       setRsvps(data || []);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Không thể tải dữ liệu RSVP.";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -107,6 +115,13 @@ export default function AdminDashboard() {
             <SacredUnityCross size={24} className="text-gold mb-4" />
             <h1 className="font-serif text-3xl md:text-4xl text-navy uppercase tracking-widest font-medium">Danh Sách RSVP</h1>
             <p className="font-serif italic text-charcoal opacity-70 mt-2">Quản lý khách mời tham dự lễ cưới</p>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 mt-4 text-[10px] tracking-[0.18em] uppercase text-gold hover:text-[#8a1827] transition-colors font-bold"
+            >
+              <span aria-hidden="true">←</span>
+              Quay lại trang chính
+            </Link>
           </div>
           
           <div className="flex flex-wrap gap-3">
@@ -250,7 +265,10 @@ export default function AdminDashboard() {
                             </svg>
                             <p className="font-serif text-xl italic mb-2">Lỗi kết nối dữ liệu</p>
                             <p className="font-sans text-xs uppercase tracking-widest opacity-70">Sự cố: {error}</p>
-                            <p className="text-sm mt-4 text-charcoal max-w-xs">Vui lòng kiểm tra lại Secret `NEXT_PUBLIC_SUPABASE_URL` và `KEY` trên GitHub.</p>
+                            <p className="text-sm mt-4 text-charcoal max-w-xs">
+                              Kiểm tra biến môi trường `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+                              trong Vercel và policy SELECT của bảng `rsvp` trên Supabase.
+                            </p>
                           </div>
                         ) : (
                           <div className="opacity-60 flex flex-col items-center">
